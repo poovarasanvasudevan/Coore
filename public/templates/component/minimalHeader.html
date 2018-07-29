@@ -1,0 +1,34 @@
+<md-toolbar class="md-whiteframe-2dp">
+    <div class="md-toolbar-tools">
+        <a href="/" class="atl-community-logo">
+            <span ng-include="'/templates/component/logo.html'" include-replace></span>
+        </a>
+        <h2 flex md-truncate></h2>
+        <div ng-controller="SearchController as ctrl" class="search-bar">
+            <md-autocomplete
+                    class="header-search"
+                    ng-disabled="ctrl.isDisabled"
+                    md-no-cache="ctrl.noCache"
+                    md-selected-item="ctrl.selectedItem"
+                    md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                    md-search-text="ctrl.searchText"
+                    md-selected-item-change="ctrl.selectedItemChange(item)"
+                    md-items="item in ctrl.querySearch(ctrl.searchText)"
+                    md-item-text="item.display"
+                    md-min-length="0"
+                    placeholder="Atlas Search">
+                <md-item-template>
+                    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                </md-item-template>
+                <md-not-found>
+                    No states matching "{{ctrl.searchText}}" were found.
+                    <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+                </md-not-found>
+            </md-autocomplete>
+        </div>
+
+        <a href="#">
+            <img src="https://avatars1.githubusercontent.com/u/8036283?s=460&v=4" class="md-avatar">
+        </a>
+    </div>
+</md-toolbar>
